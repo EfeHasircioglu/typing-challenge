@@ -2,7 +2,7 @@
   font-family: sans-serif;
 }
 html {
-  background-color: rgba(0, 0, 0, 0.905);
+  background-color: #000000e7;
   color: white;
 }
 .container {
@@ -32,4 +32,13 @@ button {
 }
 button:hover {
   background-color: rgba(255, 255, 255, 0.697);
+}
+.correct {
+  background-color: green;
+}
+.false {
+  background-color: red;
+}
+.written {
+  background-color: darkgray;
 }
