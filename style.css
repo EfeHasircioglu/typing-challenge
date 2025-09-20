@@ -30,6 +30,9 @@ button {
   border: none;
   cursor: pointer;
 }
+input {
+  font-family: monospace;
+}
 button:hover {
   background-color: rgba(255, 255, 255, 0.697);
 }

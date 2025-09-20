@@ -50,8 +50,6 @@ function setLevel(newLevel) {
   renderLevel();
 }
 
-renderLevel();
-
 targetInput.addEventListener("input", () => {
   let currentlyWritten = targetInput.value;
   console.log(currentlyWritten);
@@ -87,3 +85,5 @@ targetInput.addEventListener("input", () => {
     }
   }
 });
+
+renderLevel();
