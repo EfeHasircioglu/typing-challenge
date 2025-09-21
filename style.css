@@ -5,6 +5,12 @@ html {
   background-color: #000000e7;
   color: white;
 }
+body {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  /*  font-family: "Rubik", serif; */
+}
 .container {
   padding: 1rem;
   display: flex;
@@ -44,4 +50,62 @@ button:hover {
 }
 .written {
   background-color: darkgray;
+}
+.hidden {
+  opacity: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  z-index: -1 !important;
+}
+.modal-container {
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background-color: black;
+  opacity: 0.5;
+  transition: opacity 300ms ease-in-out;
+}
+.modal {
+  margin: auto;
+  width: 16rem;
+  font-size: large;
+  z-index: 1000;
+  height: auto;
+  padding: 1rem;
+  opacity: 1;
+  background-color: rebeccapurple;
+  border-radius: 1rem;
+  transition: opacity 300ms ease-in-out;
+}
+#modalClose {
+  background-color: rebeccapurple;
+  border-radius: 1rem;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  transition: opacity 300ms ease-in-out;
+}
+#modalClose:hover {
+  opacity: 0.8;
+}
+.results-inner {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+}
+.results-inner > * {
+  width: fit-content;
+  background-color: white;
+  color: black;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  font-size: x-large;
+  text-align: center;
+}
+.inner-desc {
+  font-size: medium;
 }

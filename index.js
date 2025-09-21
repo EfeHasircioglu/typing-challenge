@@ -1,6 +1,12 @@
 const targetTextSpan = document.getElementById("targetTextSpan");
 const targetInput = document.getElementById("targetInput");
-
+const modalContainer = document.getElementById("modalContainer");
+const modalButton = document.getElementById("modalClose");
+const resultsText = document.getElementById("resultsText");
+const resultsWPM = document.getElementById("resultsWPM");
+const resultsElapsed = document.getElementById("resultsElapsed");
+const timeView = document.getElementById("timeView");
+//TODO: reset fonksiyonunu yapma ve tasarımı güzelleştirme
 /* levellere göre textler zorlaşacak */
 const levelTexts = [
   "Geyikler, doğal ortamda hayatta kalmaya çalışan otobur hayvanlardır.",
@@ -18,6 +24,7 @@ let selectedText = levelTexts[level];
 let selectedWords = [];
 let visibleWords = document.getElementsByClassName("inner-word");
 let xVisibleWords = Array.from(visibleWords);
+
 function renderLevel() {
   targetTextSpan.innerHTML = "";
   //bir önceki selectedWords'ü temizliyoruz
@@ -39,6 +46,8 @@ function renderLevel() {
   currentWordIndex = 0;
   correctWordCount = 0;
   wrongWordCount = 0;
+  startTime = null;
+
   // update visibleWords and xVisibleWords to reflect new DOM
   visibleWords = document.getElementsByClassName("inner-word");
   xVisibleWords = Array.from(visibleWords);
@@ -49,10 +58,23 @@ function setLevel(newLevel) {
   level = newLevel;
   renderLevel();
 }
+let startTime = null;
+let wpm;
 
 targetInput.addEventListener("input", () => {
+  /* ilk input eventinde zamanı başlatsın  */
+  if (startTime === null) {
+    startTime = Date.now();
+  }
+  /* bu hesaplamaları önceden yapıyoruz */
+  const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+  const elapsedMinutes = elapsedTime / 60;
+  //TODO: input başlayınca timer görüntülemesi de başlasın
+
+  /* her input eventinde geçen süreyi hesaplıyoruz (bu verimsiz olduğu için daha sonra değiştirilebilir) */
+
+  wpm = Math.floor((correctWordCount / elapsedTime) * 60);
   let currentlyWritten = targetInput.value;
-  console.log(currentlyWritten);
   /* ilk olarak yazarken hangisini yazdığımızı bilmemiz için yazıyor olduğumuz cümle gri olacak  */
   if (!currentlyWritten.endsWith(" ")) {
     xVisibleWords[currentWordIndex].classList.add("written");
@@ -72,18 +94,42 @@ targetInput.addEventListener("input", () => {
       targetInput.value = "";
     }
   }
+  /* modalın görünmesini sağlamak için */
+  function showModal(text, wpmtext, seconds) {
+    resultsText.innerText = text;
+    resultsElapsed.innerText = seconds;
+    resultsWPM.innerText = wpmtext;
+    modalContainer.classList.remove("hidden");
+    targetInput.disabled = true;
+  }
 
   /* eğer paragrafı yazmayı bitirmişsek doğruluk oranına göre sonraki seviyeye geçip geçmediğimizi sorguluyoruz */
   if (currentWordIndex === selectedWords.length) {
-    if (correctWordCount >= (selectedWords.length * 8) / 10) {
+    if (correctWordCount >= (selectedWords.length * 8) / 10 && wpm > 30) {
       if (level + 1 < levelTexts.length) {
         xVisibleWords = Array.from(visibleWords);
         setLevel(level + 1);
+        showModal(
+          `Congratulations! You completed the level successfully.`,
+          wpm,
+          elapsedTime
+        );
       } else {
-        alert("Congratulations! You've completed all levels!");
-      }
+        //eper geçecek seviye kalmamışsa
+        alert(`Congratulations! You've completed all levels!`);
+      } //eğer seviye atlama şartı sağlanamamışsa
+    } else {
+      showModal(`You couldn't pass the level, try harder...`, wpm, elapsedTime);
+      setLevel(level);
     }
   }
+  console.log(wpm);
+  console.log(elapsedMinutes);
 });
+function closeModal() {
+  modalContainer.classList.add("hidden");
+  targetInput.disabled = false;
+}
+modalButton.addEventListener("click", () => closeModal());
 
 renderLevel();
