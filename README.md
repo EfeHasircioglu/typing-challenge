@@ -2,7 +2,7 @@
 Yazma hızınıza ve doğruluğunuza göre seviyeleri atladığınız bir oyun.
 # [Live preview](https://typingchallenge-liard.vercel.app/)
 ### Preview video
-![Preview video](https://github.com/EfeHasircioglu/typingchallenge/raw/refs/heads/main/preview%20record.mp4)
+https://github.com/user-attachments/assets/eee13fe5-40b0-40d0-bfbf-d9694e8ade49
 # Technologies used
 - Vanilla CSS and JS
 # Features
