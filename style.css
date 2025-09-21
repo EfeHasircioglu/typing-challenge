@@ -57,7 +57,7 @@ button:hover {
 .hidden {
   opacity: 0 !important;
 
-  z-index: -1 !important;
+  z-index: -100 !important;
 }
 .modal-container {
   position: fixed;
@@ -66,26 +66,30 @@ button:hover {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
-  background-color: black;
-  opacity: 0.5;
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0.6);
   transition: opacity 300ms ease-in-out;
 }
 .modal {
+  position: relative;
   margin: auto;
   width: 16rem;
   font-size: large;
-  z-index: 1000;
+  z-index: 1000 !important;
   height: auto;
   padding: 1rem;
-  opacity: 1;
   background-color: rebeccapurple;
 }
-#modalClose {
-  background-color: rebeccapurple;
-  padding: 0;
-  margin-bottom: 0.5rem;
-  transition: opacity 300ms ease-in-out;
+.modal-container {
+  position: fixed;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000; /* Changed from 0 to 1000 */
+  background-color: rgba(0, 0, 0, 0.6);
+  transition: background-color 300ms ease-in-out;
 }
 #modalClose:hover {
   opacity: 0.8;
@@ -133,6 +137,7 @@ button:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
 }
 .bottom-group > :nth-child(2) > :nth-child(2) {
