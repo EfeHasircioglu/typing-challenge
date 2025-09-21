@@ -8,6 +8,7 @@ const resultsElapsed = document.getElementById("resultsElapsed");
 const timeView = document.getElementById("timeView");
 const levelView = document.getElementById("levelView");
 const resetButton = document.getElementById("resetButton");
+const finishContainer = document.getElementById("finishContainer");
 //TODO: bitirince tebrik ekranı yapılabilir basit bir alert yerine
 /* levellere göre textler zorlaşacak */
 const levelTexts = [
@@ -144,7 +145,8 @@ targetInput.addEventListener("input", () => {
           elapsedTime
         );
       } else {
-        //eper geçecek seviye kalmamışsa
+        //eğer geçecek seviye kalmamışsa, yani oyun bitmişse
+        finishContainer.classList.remove("hidden");
         alert(`Congratulations! You've completed all levels!`);
       } //eğer seviye atlama şartı sağlanamamışsa
     } else {

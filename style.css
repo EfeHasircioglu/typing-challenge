@@ -90,6 +90,7 @@ button:hover {
   z-index: 1000; /* Changed from 0 to 1000 */
   background-color: rgba(0, 0, 0, 0.6);
   transition: background-color 300ms ease-in-out;
+  transition: opacity 300ms ease-in-out;
 }
 #modalClose:hover {
   opacity: 0.8;
@@ -145,4 +146,13 @@ button:hover {
   flex-direction: row;
   align-items: center;
   gap: 0.5rem;
+}
+#finishContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #181818;
+  transition: opacity 300ms ease-in-out;
 }
