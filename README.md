@@ -1,5 +1,5 @@
 # Typing Challenge
-Yazma hızınıza ve doğruluğunuza göre seviyeleri atladığınız bir oyun.
+A game of speedy typing where you are expected to write in a fast way to advance levels
 # [Live preview](https://typingchallenge-liard.vercel.app/)
 ### Preview video
 https://github.com/user-attachments/assets/eee13fe5-40b0-40d0-bfbf-d9694e8ade49
